@@ -4,18 +4,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.milkman.demo.model.BeerModel
+import com.milkman.demo.model.ResultState
 import com.milkman.demo.ui.viewmodels.DetailViewModel
 import com.milkman.demo.ui.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityDetailBinding
+    private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels()
-    var beerId : String? = null
+    private var beerId : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -31,9 +37,25 @@ class DetailActivity : AppCompatActivity() {
             beerId = it.getString(Constants.BEER_ID, null)
         }
 
-        viewModel.beerDetail.observe(this){
-           populateUI(it)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.beerResultStateFlow.collect{ result->
+                    when (result) {
+                        is ResultState.Success -> {
+                           populateUI(result.data)
+                        }
+                        is ResultState.Failure -> {
+                            Snackbar.make(binding.root, result.exception.message.toString(), Snackbar.LENGTH_LONG).show()
+                        }
+                        is ResultState.Empty -> {}
+                        is ResultState.Loading -> {}
+                    }
+
+
+                }
+            }
         }
+
 
         beerId?.let { id->
             viewModel.getBeerDetail(id)
@@ -52,7 +74,8 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
+
                 true
             }
 

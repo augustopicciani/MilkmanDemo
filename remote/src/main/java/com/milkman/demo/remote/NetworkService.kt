@@ -1,6 +1,8 @@
 package com.milkman.demo.remote
 
 import com.milkman.demo.model.BeerModel
+import com.milkman.demo.model.ResultState
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

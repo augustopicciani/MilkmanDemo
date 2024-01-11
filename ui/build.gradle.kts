@@ -56,6 +56,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
+    //Lottie
+    implementation("com.airbnb.android:lottie:6.2.0")
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
