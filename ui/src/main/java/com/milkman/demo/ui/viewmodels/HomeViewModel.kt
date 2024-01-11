@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor(
     private var _isLastPage = false
     private var _isLoading = false
 
-    private val _beerResultLiveDataEXP = MutableLiveData<ResultState<List<BeerModel>>>()
-    val beerResultLiveDataEXP get() = _beerResultLiveDataEXP
+    private val _beerResultLiveData = MutableLiveData<ResultState<List<BeerModel>>>()
+    val beerResultLiveData get() = _beerResultLiveData
     val isLastPage get() = _isLastPage
     val isLoading get() = _isLoading
 
@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
                 is ResultState.Empty -> _isLastPage = true
 
                 else -> {
-                    _beerResultLiveDataEXP.value = result
+                    _beerResultLiveData.value = result
                     _isLoading = false
                     page++
                 }

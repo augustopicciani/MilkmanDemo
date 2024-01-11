@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel.beerResultLiveDataEXP.observe(this){ result->
+        viewModel.beerResultLiveData.observe(this){ result->
             when(result){
                 is ResultState.Success->{
                     beerList.addAll(result.data)
