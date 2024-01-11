@@ -34,10 +34,12 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getBeerList() {
+        _isLoading = true
         viewModelScope.launch {
             try {
                 repositoryInterface.getBeerList(page).collect { result ->
                     _beerResultStateFlow.emit(result)
+                    _isLoading = false
                     page++
                 }
             } catch (e: Exception) {
