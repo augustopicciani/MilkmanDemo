@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -5,9 +6,12 @@ plugins {
     id ("com.google.dagger.hilt.android")
 }
 
+
 android {
+
     namespace = "com.milkman.demo.core"
     compileSdk = 34
+
 
     defaultConfig {
         minSdk = 24
@@ -37,34 +41,36 @@ android {
 
 dependencies {
 
+    val libraries: Map<String, Any> by project
+
     implementation(project(":remote"))
     implementation(project(":data"))
     implementation(project(":local"))
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-android-compiler:2.50")
+
+    implementation(libraries["hilt_core"].toString())
+    kapt(libraries["hilt_compiler"].toString())
 
 
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation(libraries["retrofit_core"].toString())
+    implementation(libraries["retrofit_moshi_converter"].toString())
+    implementation(libraries["retrofit_scalar_converter"].toString())
 
 //    //OkHttp
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation(libraries["okhttp_interceptor"].toString())
 
     //Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-
-//    implementation("com.google.android.material:material:1.9.0")
+    implementation(libraries["room_core"].toString())
+    implementation(libraries["room_ktx"].toString())
+    kapt(libraries["room_compiler"].toString())
 
 
-    implementation("androidx.core:core-ktx:1.9.0")
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libraries["kotlin_core"].toString())
+
+    testImplementation(libraries["junit"].toString())
+    androidTestImplementation(libraries["test_junit"].toString())
+    androidTestImplementation(libraries["espresso_core"].toString())
 }

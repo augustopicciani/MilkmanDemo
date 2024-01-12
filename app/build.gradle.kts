@@ -39,17 +39,19 @@ android {
 }
 
 dependencies {
+    val libraries: Map<String, Any> by project
 
     implementation(project(":ui"))
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-android-compiler:2.50")
+    implementation(libraries["hilt_core"].toString())
+    kapt(libraries["hilt_compiler"].toString())
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libraries["kotlin_core"].toString())
+    implementation(libraries["material"].toString())
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    testImplementation(libraries["junit"].toString())
+    androidTestImplementation(libraries["test_junit"].toString())
+    androidTestImplementation(libraries["espresso_core"].toString())
 }

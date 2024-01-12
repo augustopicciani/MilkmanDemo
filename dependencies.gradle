@@ -1,0 +1,68 @@
+
+
+def versions = [:]
+
+versions.hilt = "2.50"
+versions.retrofit = "2.9.0"
+versions.okhttp = "4.12.0"
+versions.android_kotlin = "1.12.0"
+versions.junit = "4.13.2"
+versions.junit_test = "1.1.5"
+versions.espresso_core = "3.5.1"
+versions.room = "2.6.1"
+versions.android_material = "1.11.0"
+versions.mockk = "1.13.5"
+versions.app_compat = "1.6.1"
+versions.android_activity_ktx = "1.8.2"
+versions.glide = "4.16.0"
+versions.lottie = "6.2.0"
+versions.android_lifecycle_viewmodel = "2.7.0"
+versions.android_contraint_layout = "2.1.4"
+
+
+ext.versions = versions
+
+
+def libraries = [:]
+
+//Hilt
+libraries.hilt_core = "com.google.dagger:hilt-android:$versions.hilt"
+libraries.hilt_compiler = "com.google.dagger:hilt-android-compiler:$versions.hilt"
+
+//Retrofit
+libraries.retrofit_core = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+libraries.retrofit_moshi_converter = "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+libraries.retrofit_scalar_converter = "com.squareup.retrofit2:converter-scalars:$versions.retrofit"
+
+//OkHttp
+libraries.okhttp_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+
+//Room
+libraries.room_core = "androidx.room:room-runtime:$versions.room"
+libraries.room_ktx = "androidx.room:room-ktx:$versions.room"
+libraries.room_compiler = "androidx.room:room-compiler:$versions.room"
+
+//Glide
+libraries.glide = "com.github.bumptech.glide:glide:$versions.glide"
+libraries.glide_compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
+//Lottie
+libraries.lottie = "com.airbnb.android:lottie:$versions.lottie"
+
+//Android
+libraries.kotlin_core = "androidx.core:core-ktx:$versions.android_kotlin"
+libraries.material = "com.google.android.material:material:$versions.android_material"
+libraries.app_compat = "androidx.appcompat:appcompat:$versions.app_compat"
+libraries.android_activity_ktx = "androidx.activity:activity-ktx:$versions.android_activity_ktx"
+libraries.android_lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.android_lifecycle_viewmodel"
+libraries.android_contraint_layout = "androidx.constraintlayout:constraintlayout:$versions.android_contraint_layout"
+
+//Test
+
+//Mockk
+libraries.mockk = "io.mockk:mockk:$versions.mockk"
+
+libraries.junit = "junit:junit:$versions.junit"
+libraries.test_junit = "androidx.test.ext:junit:$versions.junit_test"
+libraries.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso_core"
+ext.libraries = libraries

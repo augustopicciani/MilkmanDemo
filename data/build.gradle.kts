@@ -38,25 +38,27 @@ android {
 
 dependencies {
 
+    val libraries: Map<String, Any> by project
+
     implementation(project(":local"))
     implementation(project(":model"))
     implementation(project(":remote"))
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-android-compiler:2.50")
+    implementation(libraries["hilt_core"].toString())
+    kapt(libraries["hilt_compiler"].toString())
 
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation(libraries["retrofit_core"].toString())
+    implementation(libraries["retrofit_moshi_converter"].toString())
+    implementation(libraries["retrofit_scalar_converter"].toString())
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libraries["kotlin_core"].toString())
 
     //Mockk
-    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation(libraries["mockk"].toString())
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libraries["junit"].toString())
+    androidTestImplementation(libraries["test_junit"].toString())
+    androidTestImplementation(libraries["espresso_core"].toString())
 }

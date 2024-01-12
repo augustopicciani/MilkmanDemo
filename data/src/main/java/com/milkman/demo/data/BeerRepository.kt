@@ -22,7 +22,7 @@ class BeerRepository @Inject constructor(
 ) : BeerRepositoryInterface {
 
     override suspend fun getBeerList(page: Int): Flow<ResultState<List<BeerModel>>> = flow {
-        val response  = networkService.getBeerList(page)
+        val response = networkService.getBeerList(page)
                 when {
                     response.isSuccessful -> {
                         val beerListFromNetwork = response.body()
@@ -39,7 +39,7 @@ class BeerRepository @Inject constructor(
     }
 
     override suspend fun getBeerDetail(id: String): Flow<ResultState<BeerModel>> = flow {
-        val response = networkService.getBeerDetail(id)
+        val response =  networkService.getBeerDetail(id)
                 when{
                     response.isSuccessful->{
                         val beerFromNetwork = response.body()

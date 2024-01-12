@@ -41,31 +41,36 @@ android {
 
 dependencies {
 
+    val libraries: Map<String, Any> by project
+
     implementation(project(":di"))
     implementation(project(":model"))
     implementation(project(":data"))
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt ("com.google.dagger:hilt-android-compiler:2.50")
+    implementation(libraries["hilt_core"].toString())
+    kapt(libraries["hilt_compiler"].toString())
 
     // viewModels()
-    implementation("androidx.activity:activity-ktx:1.2.2")
+    implementation(libraries["android_activity_ktx"].toString())
 
     //Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    implementation(libraries["glide"].toString())
+    kapt(libraries["glide_compiler"].toString())
 
     //Lottie
-    implementation("com.airbnb.android:lottie:6.2.0")
+    implementation(libraries["lottie"].toString())
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libraries["android_lifecycle_viewmodel"].toString())
+    implementation(libraries["android_contraint_layout"].toString())
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libraries["kotlin_core"].toString())
+
+    implementation(libraries["app_compat"].toString())
+
+    implementation(libraries["material"].toString())
+
+    testImplementation(libraries["junit"].toString())
+    androidTestImplementation(libraries["test_junit"].toString())
+    androidTestImplementation(libraries["espresso_core"].toString())
 }

@@ -36,15 +36,19 @@ android {
 
 dependencies {
 
-    //Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    val libraries: Map<String, Any> by project
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    //Room
+    implementation(libraries["room_core"].toString())
+    implementation(libraries["room_ktx"].toString())
+    kapt(libraries["room_compiler"].toString())
+
+    implementation(libraries["kotlin_core"].toString())
+
+    implementation(libraries["app_compat"].toString())
+    implementation(libraries["material"].toString())
+
+    testImplementation(libraries["junit"].toString())
+    androidTestImplementation(libraries["test_junit"].toString())
+    androidTestImplementation(libraries["espresso_core"].toString())
 }
